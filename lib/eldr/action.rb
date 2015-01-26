@@ -12,7 +12,15 @@ module Eldr
   module Action
     def self.included(klass)
       klass.include ActiveModel::Validations
-      klass.attr_accessor :configuration, :env
+      klass.attr_accessor :configuration, :env, :status, :body, :header
+    end
+
+    def header
+      @header ||= {}
+    end
+
+    def body
+      @body ||= ''
     end
 
     def valid?
@@ -34,6 +42,10 @@ module Eldr
 
     def config
       configuration
+    end
+
+    def to_array
+      [status, header, [body]]
     end
   end
 end
