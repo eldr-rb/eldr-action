@@ -44,8 +44,9 @@ module Eldr
       configuration
     end
 
-    def to_array
+    def to_a
       [status, header, [body]]
-    end
+    end3
+    alias_method :to_ary, :to_a
   end
 end
