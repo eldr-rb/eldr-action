@@ -10,9 +10,25 @@ end
 
 module Eldr
   module Action
-    def self.included(klass)
-      klass.include ActiveModel::Validations
-      klass.send(:attr_accessor, :env, :status, :body, :header)
+    class << self
+      def included(klass)
+        klass.include ActiveModel::Validations
+        klass.send(:attr_accessor, :env, :configuration, :status, :body, :header)
+      end
+
+      def configuration
+        @configuration ||= Configuration.new
+      end
+      alias_method :config, :configuration
+
+      def set(key, value)
+        configuration.set(key, value)
+      end
+    end
+
+    def initialize(configuration = nil)
+      configuration ||= self.class.configuration
+      @configuration = configuration
     end
 
     def header
