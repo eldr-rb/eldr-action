@@ -12,7 +12,7 @@ module Eldr
   module Action
     def self.included(klass)
       klass.include ActiveModel::Validations
-      klass.send(:attr_accessor, :configuration, :env, :status, :body, :header)
+      klass.send(:attr_accessor, :env, :status, :body, :header)
     end
 
     def header
