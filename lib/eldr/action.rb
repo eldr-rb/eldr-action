@@ -26,7 +26,7 @@ module Eldr
       end
 
       def inherited(base)
-g        base.configuration.merge!(configuration)
+        base.configuration.merge!(configuration)
       end
     end
 
