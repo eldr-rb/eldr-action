@@ -46,7 +46,7 @@ module Eldr
 
     def to_a
       [status, header, [body]]
-    end3
+    end
     alias_method :to_ary, :to_a
   end
 end
