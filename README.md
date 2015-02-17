@@ -21,13 +21,11 @@ Or install it yourself as:
 
 ## Usage
 
-Just include it your handler:
+Just extend it:
 
 ```ruby
 module Cats
-  class Show
-    include Eldr::Action
-
+  class Show < Eldr::Action
     def call(env)
       @env = env
 

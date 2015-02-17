@@ -9,13 +9,11 @@ module ActiveModel
 end
 
 module Eldr
-  module Action
-    class << self
-      def included(klass)
-        klass.include ActiveModel::Validations
-        klass.send(:attr_accessor, :env, :configuration, :status, :body, :header)
-      end
+  class Action
+    include ActiveModel::Validations
+    attr_accessor :env, :configuration, :status, :body, :header
 
+    class << self
       def configuration
         @configuration ||= Configuration.new
       end
@@ -30,10 +28,10 @@ module Eldr
       end
     end
 
-    def initialize(configuration = nil)
-      configuration ||= self.class.configuration
-      @configuration = configuration
+    def configuration
+      @configuration ||= self.class.configuration
     end
+    alias_method :config, :configuration
 
     def header
       @header ||= {}
