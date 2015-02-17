@@ -24,6 +24,10 @@ module Eldr
       def set(key, value)
         configuration.set(key, value)
       end
+
+      def inherited(base)
+g        base.configuration.merge!(configuration)
+      end
     end
 
     def initialize(configuration = nil)
